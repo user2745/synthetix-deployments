@@ -38,7 +38,7 @@ include = [
 ]
 
 [setting.snx_package]
-defaultValue = "synthetix:3.12.0"
+defaultValue = "synthetix:3.13.0"
 
 [setting.v2x_package]
 defaultValue = "synthetix:2.101.2"
@@ -228,3 +228,45 @@ governance_initial_epoch_end_date = "1726504075"
 [var.treasuryInfo]
 treasury_account_id = "10"
 treasury_liquidator_address = "0x9DAffb42b60Bb14d8EE80b503AAfC312dCbAF552"
+
+# deprecation
+[invoke.setPausedStablecoinConversion]
+target = ["legacyMarket.Market"]
+func = ["setPauseStablecoinConversion"]
+args = [true]
+
+
+[invoke.disableCoreDeposit]
+target = ["system.CoreProxy"]
+fromCall.func = "owner"
+func = "setFeatureFlagAllowAll"
+args = ["<%= formatBytes32String('deposit') %>", false]
+
+[invoke.disableCoreDelegate]
+target = ["system.CoreProxy"]
+fromCall.func = "owner"
+func = "setFeatureFlagAllowAll"
+args = ["<%= formatBytes32String('delegateCollateral') %>", false]
+
+[invoke.setMainnetOnlyDebt]
+target = ["legacyMarket.v2x.AddressResolver"]
+func = ["importAddresses"]
+args = [
+  ["<%= formatBytes32String('ext:AggregatorIssuedSynths') %>", "<%= formatBytes32String('ext:AggregatorDebtRatio') %>"],
+  ["<%= settings.aggregatorIssuedSynthsAddress %>", "<%= settings.aggregatorDebtRatioAddress %>"]
+]
+
+[invoke.refreshResolverCache]
+target = ["legacyMarket.v2x.Issuer", "legacyMarket.v2x.FeePool"]
+func = ["rebuildCache"]
+
+depends = ["invoke.setMainnetOnlyDebt"]
+
+[invoke.deprecate]
+target = ["system.CoreProxy"]
+func = ["deprecateCollateral"]
+args = [
+    ["<%= legacyMarket.v2x.ProxySynthetix %>"]
+    ["<%= settings.treasury %>"]
+]
+
