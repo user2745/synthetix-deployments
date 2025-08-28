@@ -247,11 +247,6 @@ fromCall.func = "owner"
 func = "setFeatureFlagAllowAll"
 args = ["<%= formatBytes32String('delegateCollateral') %>", false]
 
-[invoke.refreshResolverCache]
-target = ["legacyMarket.v2x.Issuer", "legacyMarket.v2x.FeePool"]
-func = "rebuildCache"
-fromCall.func = "owner"
-
 [invoke.deprecate]
 target = ["system.CoreProxy"]
 func = "deprecateCollateral"

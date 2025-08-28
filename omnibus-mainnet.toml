@@ -283,3 +283,5 @@ depends = [
 target = ["legacyMarket.v2x.Issuer", "legacyMarket.v2x.FeePool"]
 func = "rebuildCache"
 fromCall.func = "owner"
+
+depends = ["invoke.setMainnetOnlyDebt"]
