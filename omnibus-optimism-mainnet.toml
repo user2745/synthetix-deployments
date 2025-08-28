@@ -221,3 +221,40 @@ args = ["1", "31536000", "<%= parseEther('1') %>", "<%= parseEther('0.5') %>"]
 [var.treasuryInfo]
 treasury_account_id = "10"
 treasury_liquidator_address = "0x9DAffb42b60Bb14d8EE80b503AAfC312dCbAF552"
+
+
+# deprecation
+
+[invoke.setPausedStablecoinConversion]
+target = ["legacyMarket.Market"]
+fromCall.func = "owner"
+func = "setPauseStablecoinConversion"
+args = ['true']
+
+#depends = ['provision.legacyMarket']
+
+[invoke.disableCoreDeposit]
+target = ["system.CoreProxy"]
+fromCall.func = "owner"
+func = "setFeatureFlagAllowAll"
+args = ["<%= formatBytes32String('deposit') %>", false]
+
+#depends = ['provision.system']
+
+[invoke.disableCoreDelegate]
+target = ["system.CoreProxy"]
+fromCall.func = "owner"
+func = "setFeatureFlagAllowAll"
+args = ["<%= formatBytes32String('delegateCollateral') %>", false]
+
+[invoke.refreshResolverCache]
+target = ["legacyMarket.v2x.Issuer", "legacyMarket.v2x.FeePool"]
+func = "rebuildCache"
+fromCall.func = "owner"
+
+[invoke.deprecate]
+target = ["system.CoreProxy"]
+func = "deprecateCollateral"
+fromCall.func = "owner"
+args = ["<%= legacyMarket.v2x.ProxySynthetix.address %>", "<%= settings.treasury %>"]
+depends = ["provision.system", "provision.legacyMarket", "setting.treasury"]

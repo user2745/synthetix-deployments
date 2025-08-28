@@ -283,10 +283,3 @@ depends = [
 target = ["legacyMarket.v2x.Issuer", "legacyMarket.v2x.FeePool"]
 func = "rebuildCache"
 fromCall.func = "owner"
-
-[invoke.deprecate]
-target = ["system.CoreProxy"]
-func = "deprecateCollateral"
-fromCall.func = "owner"
-args = ["<%= legacyMarket.v2x.ProxySynthetix.address %>", "<%= settings.treasury %>"]
-depends = ["provision.system", "provision.legacyMarket", "setting.treasury"]
