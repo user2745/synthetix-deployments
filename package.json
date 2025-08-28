@@ -71,11 +71,11 @@
     "prettier-plugin-toml": "^2.0.1",
     "solc": "0.8.21",
     "supports-color": "^8.1.1",
-    "viem": "^2.30.0"
+    "viem": "^2.36.0"
   },
   "resolutions": {
     "mocha": "^11",
-    "viem": "^2.30.0"
+    "viem": "^2.36.0"
   },
   "mocha": {
     "timeout": "5m",
