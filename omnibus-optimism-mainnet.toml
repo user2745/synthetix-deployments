@@ -222,7 +222,6 @@ args = ["1", "31536000", "<%= parseEther('1') %>", "<%= parseEther('0.5') %>"]
 treasury_account_id = "10"
 treasury_liquidator_address = "0x9DAffb42b60Bb14d8EE80b503AAfC312dCbAF552"
 
-
 # deprecation
 
 [invoke.setPausedStablecoinConversion]
