@@ -231,21 +231,23 @@ fromCall.func = "owner"
 func = "setPauseStablecoinConversion"
 args = ['true']
 
-#depends = ['provision.legacyMarket']
-
 [invoke.disableCoreDeposit]
 target = ["system.CoreProxy"]
 fromCall.func = "owner"
 func = "setFeatureFlagAllowAll"
 args = ["<%= formatBytes32String('deposit') %>", false]
 
-#depends = ['provision.system']
-
 [invoke.disableCoreDelegate]
 target = ["system.CoreProxy"]
 fromCall.func = "owner"
 func = "setFeatureFlagAllowAll"
 args = ["<%= formatBytes32String('delegateCollateral') %>", false]
+
+[invoke.disableMintMarket]
+target = ["system.CoreProxy"]
+fromCall.func = "owner"
+func = "setFeatureFlagAllowAll"
+args = ["<%= formatBytes32String('withdrawMarketUsd') %>", false]
 
 [invoke.deprecate]
 target = ["system.CoreProxy"]
