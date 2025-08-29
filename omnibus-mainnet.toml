@@ -1,5 +1,5 @@
 name = "synthetix-omnibus"
-version = "26"
+version = "27"
 description = "Includes the full synthetix system with configurations applied"
 deployers = [
     "0x1C8236B406911A376369e33D39189F1b4B39F27D",
@@ -38,7 +38,7 @@ include = [
 ]
 
 [setting.snx_package]
-defaultValue = "synthetix:3.14.0"
+defaultValue = "synthetix:3.14.1"
 
 [setting.v2x_package]
 defaultValue = "synthetix:2.101.2"
@@ -56,7 +56,7 @@ defaultValue = "synthetix-perps-market:3.3.19"
 defaultValue = "synthetix-legacy-market:3.12.1"
 
 [setting.treasury_market_package]
-defaultValue = "synthetix-treasury-market:3.14.0"
+defaultValue = "synthetix-treasury-market:3.14.1"
 
 [setting.susde_package]
 defaultValue = 'susde-token'
@@ -235,12 +235,6 @@ governance_initial_epoch_end_date = "1726504075"
 treasury_account_id = "10"
 treasury_liquidator_address = "0x9DAffb42b60Bb14d8EE80b503AAfC312dCbAF552"
 
-# deprecation
-[invoke.setPausedStablecoinConversion]
-target = ["legacyMarket.Market"]
-fromCall.func = "owner"
-func = "setPauseStablecoinConversion"
-args = ['true']
 
 #depends = ['provision.legacyMarket']
 
