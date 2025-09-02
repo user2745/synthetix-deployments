@@ -252,5 +252,5 @@ args = ["<%= formatBytes32String('withdrawMarketUsd') %>", false]
 target = ["system.CoreProxy"]
 func = "deprecateCollateral"
 fromCall.func = "owner"
-args = ["<%= legacyMarket.v2x.ProxySynthetix.address %>", "<%= settings.treasury %>"]
-depends = ["provision.system", "provision.legacyMarket", "setting.treasury"]
+args = ["<%= legacyMarket.v2x.ProxySynthetix.address %>", "<%= settings.pdao %>"]
+depends = ["provision.system", "provision.legacyMarket", "setting.pdao"]
