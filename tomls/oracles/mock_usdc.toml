@@ -1,0 +1,22 @@
+# Mock oracle for testing custom USDC token
+# Returns a fixed price of $1.00 (100000000 in 8 decimals)
+
+[setting.mock_usdc_price]
+defaultValue = "100000000"
+description = "Fixed mock price for custom USDC: $1.00 (8 decimals)"
+
+[invoke.registerMockUsdcOracleNode]
+target = ["system.oracle_manager.Proxy"]
+fromCall.func = "owner"
+func = "registerNode"
+args = [
+    # 2 = pyth aggregator type (we'll use as generic fixed-price)
+    2,
+    # Pass the fixed price directly as encoded data
+    "<%= defaultAbiCoder.encode(['uint256'], [settings.mock_usdc_price]) %>",
+    [
+    ],
+]
+extra.mock_usdc_oracle_id.event = "NodeRegistered"
+extra.mock_usdc_oracle_id.arg = 0
+depends = ['provision.system', 'setting.mock_usdc_price']

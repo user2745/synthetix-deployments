@@ -68,6 +68,13 @@ defaultValue = "86400"
 defaultValue = "0x694AA1769357215DE4FAC081bf1f309aDC325306"
 description = "https://docs.chain.link/data-feeds/price-feeds/addresses/?network=ethereum&page=1"
 
+[setting.usdc_aggregator_address]
+defaultValue = "0xA2F78ab2355fe2f984D808B5CeE7FD0A93D5270E"
+description = "Chainlink USDC/USD feed on Ethereum Sepolia"
+
+[setting.custom_usdc_address]
+defaultValue = "0x1cbc31fe381442f108de787038886a297ab68770"
+
 [setting.weth_max_pool_collateral]
 defaultValue = "<%= parseEther(String(20_000)) %>"
 
